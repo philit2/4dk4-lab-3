@@ -30,16 +30,14 @@
 
 /*******************************************************************************/
 
-#define Call_ARRIVALRATE 3   /* calls/minute */
-#define MEAN_CALL_DURATION 3 /* minutes */
+#define Call_ARRIVALRATES 1, 2, 3, 4, 5, 6, 7, 8, 9, 10   /* calls/minute */
+#define MEAN_CALL_DURATION 1 /* minutes */
 #define RUNLENGTH 5e6 /* number of successful calls */
 #define BLIPRATE 1e3
-#define NUMBER_OF_CHANNELS 11
+#define NUMBERS_OF_CHANNELS 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
 
 /* Comma separated list of random seeds to run. */
-#define RANDOM_SEED_LIST 400343389, 400381481, 22, 333, 4444, 55555, 666666, 7777777, 88888888, 999999999
-#define TRUNK_SIZES 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 
-#define OFFERED_LOAD 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
+#define RANDOM_SEED_LIST 333, 4444, 55555, 400343389, 400381481
 
 /*******************************************************************************/
 

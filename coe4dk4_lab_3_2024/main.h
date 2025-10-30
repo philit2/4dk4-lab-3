@@ -25,30 +25,55 @@
 
 /*******************************************************************************/
 
-#include "simlib.h"
-#include "main.h"
-#include "simparameters.h"
-#include "cleanup.h"
+#ifndef _MAIN_H_
+#define _MAIN_H_
 
 /*******************************************************************************/
 
-void cleanup (Simulation_Run_Ptr this_simulation_run)
+#include "simlib.h"
+
+/*******************************************************************************/
+
+typedef Server Channel;
+typedef Server_Ptr Channel_Ptr;
+
+typedef enum {XMTTING, WAITING} Call_Status;
+
+typedef struct _call_
 {
-  int i;
-  Simulation_Run_Data_Ptr sim_data;
+  double arrive_time;
+  double call_duration;
+  Channel_Ptr channel;
+} Call, * Call_Ptr;
 
-  sim_data = (Simulation_Run_Data_Ptr) simulation_run_data(this_simulation_run);
+typedef struct _simulation_run_data_
+{
+  Channel_Ptr * channels;
+  long int blip_counter;
+  long int call_arrival_count;
+  long int calls_processed;
+  long int blocked_call_count;
+  long int number_of_calls_processed;
+  double accumulated_call_time;
+  unsigned random_seed;
+  double arrival_rate;
+  int number_of_channels;
+} Simulation_Run_Data, * Simulation_Run_Data_Ptr;
 
-  /* Clean out the channels. */
-  for (i=0; i<NUMBER_OF_CHANNELS; i++) {
-    if( (*(sim_data->channels+i))->state == BUSY)
-      xfree(server_get(*(sim_data->channels+i)));
-  }
-  xfree(sim_data->channels);
+/*******************************************************************************/
 
-  /* Clean up the simulation_run. */
-  simulation_run_free_memory(this_simulation_run);
-}
+/*
+ * Function prototypes
+ */
+
+extern int main(void);
+
+/*******************************************************************************/
+
+#endif /* main.h */
+
+
+
 
 
 
